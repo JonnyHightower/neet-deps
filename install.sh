@@ -30,22 +30,6 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 		echo "tnsenum=${NEET}/pkg/bin/tnsenum" >> "${CONFDIR}/locations"
 	fi
 
-	if ! type openvas-nasl >/dev/null 2>&1; then
-		if ! type nasl >/dev/null 2>&1; then
-			Install openvas-libraries "OpenVAS Libraries"
-			if [ $? -eq 0 ]; then
-				OV=`type openvas-nasl 2>/dev/null | awk {print'$3'}`
-				echo "openvas-nasl=$OV" >> "${CONFDIR}/locations"
-			fi
-		else
-			OV=`type nasl | awk {print'$3'}`
-			echo "openvas-nasl=$OV" >> "${CONFDIR}/locations"
-		fi
-	else
-		OV=`type openvas-nasl | awk {print'$3'}`
-		echo "openvas-nasl=$OV" >> "${CONFDIR}/locations"
-	fi
-
 	if ! type amap >/dev/null 2>&1; then
 		Install amap "THC Amap"
 		if [ $? -eq 0 ]; then
