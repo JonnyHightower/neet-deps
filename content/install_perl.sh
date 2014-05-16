@@ -5,7 +5,7 @@
 
 wd=$PWD
 FORCE_INSTALL="NONE"
-NO_TEST="Net-Pcap- DBD-Sybase"
+NO_TEST="Net-Pcap- Net-PcapUtils DBD-Sybase"
 PREFIX=$1
 [ ! -d "${PREFIX}" ] && PREFIX=/usr/local
 
