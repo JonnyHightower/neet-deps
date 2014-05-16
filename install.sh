@@ -49,6 +49,10 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 
 	PkgInstall framework2 "Metasploit_Framework 2"
 
+	# Perl dependencies
+	cd "${INST}/content/" && ./install_perl.sh
+	cd "${INST}"
+
 	#######################################################
 	newVersion neet-deps $VERSION
 else

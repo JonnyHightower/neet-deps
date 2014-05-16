@@ -42,6 +42,10 @@ for mod in Net-IP Digest-SHA Digest-HMAC Net-SSLeay NetAddr-IP XML-Twig XML-Pars
 	echo "*****************************************"
 	echo
 
+	if [ ! -f ${mod}*gz ]; then
+		continue
+	fi	
+
 	# Extract the tarball
 	dir=`tar tzf ${mod}*gz | head -n1 | sed -e 's?/$??'`
 	tar xzf ${mod}*gz
