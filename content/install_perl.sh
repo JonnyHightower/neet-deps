@@ -5,7 +5,7 @@
 
 wd=$PWD
 FORCE_INSTALL="NONE"
-NO_TEST="Net-Pcap- DBD-Sybase"
+NO_TEST="Net-Pcap- Net-PcapUtils DBD-Sybase"
 PREFIX=$1
 [ ! -d "${PREFIX}" ] && PREFIX=/usr/local
 
@@ -41,6 +41,10 @@ for mod in Net-IP Digest-SHA Digest-HMAC Net-SSLeay NetAddr-IP XML-Twig XML-Pars
 	echo "*** Building module $pmod"
 	echo "*****************************************"
 	echo
+
+	if [ ! -f ${mod}*gz ]; then
+		continue
+	fi	
 
 	# Extract the tarball
 	dir=`tar tzf ${mod}*gz | head -n1 | sed -e 's?/$??'`
