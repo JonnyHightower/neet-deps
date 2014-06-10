@@ -30,6 +30,13 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 		echo "tnsenum=${NEET}/pkg/bin/tnsenum" >> "${CONFDIR}/locations"
 	fi
 
+	Install libesedb libesedb
+	if [ $? -eq 0 ]; then
+		echo "esedbexport=${NEET}/pkg/bin/esedbexport" >> "${CONFDIR}/locations"
+		# Now do ntdsxtract
+		PkgInstall ntdsxtract ntdsxtract
+	fi
+
 	if ! type amap >/dev/null 2>&1; then
 		Install amap "THC Amap"
 		if [ $? -eq 0 ]; then
