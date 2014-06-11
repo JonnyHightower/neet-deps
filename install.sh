@@ -37,6 +37,11 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 		PkgInstall ntdsxtract ntdsxtract
 	fi
 
+	PkgInstall creddump creddump
+	echo "pwdump=${NEET}/pkg/creddump/pwdump.py " >> "${CONFDIR}/locations"
+	echo "lsadump=${NEET}/pkg/creddump/lsadump.py " >> "${CONFDIR}/locations"
+	echo "cachedump=${NEET}/pkg/creddump/cachedump.py " >> "${CONFDIR}/locations"
+
 	if ! type amap >/dev/null 2>&1; then
 		Install amap "THC Amap"
 		if [ $? -eq 0 ]; then
