@@ -68,6 +68,9 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 		if [ $? -eq 0 ]; then
 			newLocation openvas-nasl "${NEET}/pkg/bin/openvas-nasl"
 		fi
+	else
+		OV=`type openvas-nasl | awk {print'$3'}`
+		newLocation openvas-nasl "$OV"
 	fi
 
 	if ! systemHas winexe; then
@@ -75,8 +78,10 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 		if [ $? -eq 0 ]; then
 			newLocation winexe "${NEET}/pkg/bin/winexe"
 		fi
+	else
+		OV=`type winexe | awk {print'$3'}`
+		newLocation winexe "$OV"
 	fi
-
 
 	# Perl dependencies
 	cd "${INST}/content/" && ./install_perl.sh
