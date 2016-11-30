@@ -74,7 +74,20 @@ if [ ! -z $INVOKEDBYNEETUPDATE ] && [ $INVOKEDBYNEETUPDATE -eq 1 ]; then
 	fi
 
 	if ! systemHas winexe; then
-		Install winexe-1.00 "Winexe"
+		if [ ! -x "${NEET}/pkg/bin/winexe" ] || ! "${NEET}/pkg/bin/winexe" 2>&1 | grep -q "version 1.1"; then
+			echo "** Winexe installation could take up to 30 minutes - the entire **"
+			echo "** Samba source needs to be downloaded from github              **"
+			Install winexe-1.1 "Winexe"
+			if [ $? -eq 0 ]; then
+				newLocation winexe "${NEET}/pkg/bin/winexe"
+			fi
+		else
+			newLocation winexe "${NEET}/pkg/bin/winexe"
+		fi
+	elif ! winexe 2>&1 | grep -q "version 1.1"; then
+		echo "** Winexe installation could take up to 30 minutes - the entire **"
+		echo "** Samba source needs to be downloaded from github              **"
+		Install winexe-1.1 "Winexe"
 		if [ $? -eq 0 ]; then
 			newLocation winexe "${NEET}/pkg/bin/winexe"
 		fi
